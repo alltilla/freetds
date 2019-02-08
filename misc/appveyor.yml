@@ -31,8 +31,38 @@ environment:
   matrix:
   - PLAT: Win64
     WIDTH: 64
+    VS_VERSION: "2015"
+    TDSVER: "7.3"
+
+  - PLAT: Win32
+    WIDTH: 32
+    VS_VERSION: "2015"
+    TDSVER: "7.2"
+
+  - PLAT: Win64
+    WIDTH: 64
+    VS_VERSION: "2013"
+    TDSVER: "7.3"
+
+  - PLAT: Win32
+    WIDTH: 32
+    VS_VERSION: "2013"
+    TDSVER: "7.2"
+
+  - PLAT: Win64
+    WIDTH: 64
     VS_VERSION: "2010"
     TDSVER: "auto"
+
+  - PLAT: Win32
+    WIDTH: 32
+    VS_VERSION: "2010"
+    TDSVER: "7.1"
+
+  - PLAT: Win32
+    WIDTH: 32
+    VS_VERSION: "2008"
+    TDSVER: "7.0"
 
 configuration:
   - release
@@ -91,7 +121,6 @@ test_script:
   - echo tds version = %TDSVER%>> freetds.conf.local
   - echo [local]>> freetds.conf.local
   - echo host = 127.0.0.1>> freetds.conf.local
-  - echo debug flags = 0x6fff>> freetds.conf.local
   # Create PWD
   - echo UID=sa> PWD
   - echo PWD=Password12!>> PWD
@@ -103,7 +132,6 @@ test_script:
   - set TDS_SKIP_SUCCESS=1
   # Add dirs of our just built DLLs to PATH envvar so everything works
   - set PATH=%CD%\src\ctlib;%CD%\src\dblib;%PATH%
-  - set TDSDUMPCONFIG=stdout
   # register ODBC driver
   - "%WINDIR%\\SysWOW64\\regsvr32 /s src\\odbc\\tdsodbc.dll || %WINDIR%\\system32\\regsvr32 /s src\\odbc\\tdsodbc.dll"
   # Build and run tests
