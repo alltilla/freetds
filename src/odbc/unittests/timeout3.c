@@ -144,6 +144,10 @@ main(int argc, char *argv[])
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
 #endif
 
+	putenv("TDSDUMP=stdout");
+	setbuf(stdout, NULL);
+	setbuf(stderr, NULL);
+
 	if (tds_mutex_init(&mtx))
 		return 1;
 

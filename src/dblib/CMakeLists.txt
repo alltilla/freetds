@@ -1,4 +1,3 @@
-add_subdirectory(unittests)
 
 if(WIN32)
 	set(win_SRCS winmain.c dblib.def dbopen.c)

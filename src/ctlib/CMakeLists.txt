@@ -1,4 +1,3 @@
-add_subdirectory(unittests)
 
 set(static_lib_name ct)
 if(WIN32)
